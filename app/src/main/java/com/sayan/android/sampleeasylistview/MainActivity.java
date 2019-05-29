@@ -1,12 +1,17 @@
 package com.sayan.android.sampleeasylistview;
 
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sayan.easylistwidget.EasyListView;
+import com.sayan.easylistwidget.adapters.CustomRecyclerAdapter;
+import com.sayan.easylistwidget.adapters.SimpleTextAdapter;
 import com.sayan.easylistwidget.listtiles.ListTile;
 
 import java.util.ArrayList;
@@ -19,8 +24,8 @@ public class MainActivity extends AppCompatActivity implements EasyListView.OnIt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         RecyclerView recyclerView = findViewById(R.id.recycler);
-        showBasicChild(recyclerView);
-//        showCustomChild(recyclerView);
+//        showBasicChild(recyclerView);
+        showCustomChild(recyclerView);
     }
 
     private void showBasicChild(RecyclerView recyclerView) {
@@ -73,7 +78,20 @@ public class MainActivity extends AppCompatActivity implements EasyListView.OnIt
                     .addListItems(listItems)
                     .addItemModel(ItemsPOJO.class)
                     .addRow(listTile)
+                    .setCount(5)
                     .setOnItemClickListener(this)
+                    .setOnBindViewHolderCalledListener(new EasyListView.OnBindViewHolderCalledListener<ItemsPOJO>() {
+                        @Override
+                        public void onBasicBindViewHolder(@NonNull SimpleTextAdapter.SimpleTextViewHolder<ItemsPOJO> viewHolder, ItemsPOJO itemOnThatPosition, int position) {
+                            viewHolder.titleTextView.setText(itemOnThatPosition.getName());
+                            viewHolder.descriptionTextView.setText(itemOnThatPosition.getDesc());
+                        }
+
+                        @Override
+                        public void onCustomBindViewHolder(@NonNull CustomRecyclerAdapter.CustomRecyclerViewHolder<ItemsPOJO> viewHolder, ItemsPOJO itemOnThatPosition, int position) {
+                            //not called for basic setup
+                        }
+                    })
                     .Build();
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
@@ -86,8 +104,31 @@ public class MainActivity extends AppCompatActivity implements EasyListView.OnIt
                 .addRecyclerView(recyclerView)
                 .addListItems(listItems)
                 .addItemModel(CustomItemsPOJO.class)
+                .setCount(5)
                 .addRow(childResId)
                 .setOnItemClickListener(this)
+                .setOnBindViewHolderCalledListener(new EasyListView.OnBindViewHolderCalledListener<CustomItemsPOJO>() {
+                    @Override
+                    public void onBasicBindViewHolder(@NonNull SimpleTextAdapter.SimpleTextViewHolder<CustomItemsPOJO> viewHolder, CustomItemsPOJO itemOnThatPosition, int position) {
+                        //not called for custom setup
+                    }
+
+                    @Override
+                    public void onCustomBindViewHolder(@NonNull CustomRecyclerAdapter.CustomRecyclerViewHolder<CustomItemsPOJO> viewHolder, CustomItemsPOJO itemOnThatPosition, int position) {
+                        TextView titleTextView = viewHolder.itemView.findViewById(R.id.titleTextView);
+                        TextView descriptionTextView = viewHolder.itemView.findViewById(R.id.descriptionTextView);
+                        Button button = viewHolder.itemView.findViewById(R.id.button);
+
+                        titleTextView.setText(itemOnThatPosition.getName());
+                        if (position == 0) {
+                            descriptionTextView.setText("Ha Ha Ha");
+                            button.setText("sample button");
+                        } else {
+                            descriptionTextView.setText(itemOnThatPosition.getDesc());
+                            button.setText(itemOnThatPosition.getButton());
+                        }
+                    }
+                })
                 .Build();
     }
 
