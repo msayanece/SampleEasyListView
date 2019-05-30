@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="75dp"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:padding="10dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/friendProfilePic"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:src=""
+                android:contentDescription="Fiends Image"/>
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:gravity="center|start"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/friendName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="16dp"
+                android:textSize="12sp"
+                android:textColor="@color/colorPrimary"
+                android:visibility="gone"
+                tools:text="John Doe"
+                tools:visibility="visible" />
+
+            <hani.momanii.supernova_emoji_library.Helper.EmojiconTextView
+                android:id="@+id/lastTextMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="16dp"
+                android:textColor="#818080"
+                android:visibility="gone"
+                tools:text="Me too. Till next time" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/onlineStatusIcon"
+                    android:layout_width="5dp"
+                    android:layout_height="5dp"
+                    android:layout_gravity="center_vertical"
+                    android:visibility="gone"
+                    tools:background="@drawable/green_circle_shape"
+                    tools:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/lastOnlineTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center_vertical"
+                    android:visibility="gone"
+                    tools:text="9.40 A.M."
+                    android:textSize="12sp"
+                    tools:visibility="visible" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/totalUnreadChat"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/green_circle_shape"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:textColor="#FFFFFF"
+            android:visibility="gone"
+            tools:text="10"
+            tools:visibility="visible" />
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
