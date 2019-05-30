@@ -3,6 +3,7 @@ package com.sayan.android.sampleeasylistview;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
@@ -104,9 +105,10 @@ public class MainActivity extends AppCompatActivity implements EasyListView.OnIt
                 .addRecyclerView(recyclerView)
                 .addListItems(listItems)
                 .addItemModel(CustomItemsPOJO.class)
-                .setCount(5)
+                .setCount(5)                                                //Optional
+                .addLayoutManager(new LinearLayoutManager(this))    //Optional, The SDK will use this layout manager only for the custom setup
                 .addRow(childResId)
-                .setOnItemClickListener(this)
+                .setOnItemClickListener(this)                               //Optional
                 .setOnBindViewHolderCalledListener(new EasyListView.OnBindViewHolderCalledListener<CustomItemsPOJO>() {
                     @Override
                     public void onBasicBindViewHolder(@NonNull SimpleTextAdapter.SimpleTextViewHolder<CustomItemsPOJO> viewHolder, CustomItemsPOJO itemOnThatPosition, int position) {
@@ -128,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements EasyListView.OnIt
                             button.setText(itemOnThatPosition.getButton());
                         }
                     }
-                })
+                })  //Optional
                 .Build();
     }
 
