@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements EasyListView.OnIt
                             //not called for basic setup
                         }
                     })
-                    .Build();
+                    .build();
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
             Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
@@ -187,7 +187,7 @@ public class MainActivity extends AppCompatActivity implements EasyListView.OnIt
                         }
                     }
                 })  //Optional
-                .Build();
+                .build();
     }
 
     private void showFriendListRecyclerView(RecyclerView recyclerView, List<FriendList> listItems, int custom_recycler_child) {
@@ -305,7 +305,7 @@ public class MainActivity extends AppCompatActivity implements EasyListView.OnIt
 
                     }
                 })
-                .Build();
+                .build();
 
     }
 
